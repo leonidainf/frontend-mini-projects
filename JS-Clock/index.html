@@ -1,6 +1,82 @@
-<html>
-    <head></head>
-    <body>
-        
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LeoCodes | Javascript Clock</title>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="clock-face">
+        <div class="line hours"></div>
+        <div class="line minutes"></div>
+        <div class="line seconds"></div>
+      </div>
+    </div>
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10px;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0f0c29;
+        background: -webkit-linear-gradient(
+          to right,
+          #24243e,
+          #302b63,
+          #0f0c29
+        );
+        background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+      }
+      .clock {
+        width: 30rem;
+        height: 30rem;
+        border: 1.4rem solid #fff;
+        border-radius: 50%;
+        margin: 50px auto;
+        position: relative;
+        padding: 2rem;
+      }
+      .clock-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: translateY(-3px);
+      }
+      .clock .line {
+        width: 50%;
+        height: 6px;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        transform-origin: 100%;
+        transform: rotate(90deg);
+        transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+    </style>
+
+    <script>
+        const lineSeconds = document.querySelector('.seconds');
+        const lineMinutes = document.querySelector('.minutes');
+
+        function setDate() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const secondsDegrees = ((seconds / 60) * 360) + 90;
+            lineSeconds.style.transform = `rotate(${secondsDegrees}deg)`;
+
+            console.log(seconds);
+        }
+
+        setInterval(setDate, 1000);
+
+    </script>
+  </body>
 </html>
