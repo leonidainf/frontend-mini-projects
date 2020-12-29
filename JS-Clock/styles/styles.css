@@ -87,12 +87,12 @@ body {
 }
 .clock .day {
   position: absolute;
-  top: 25%;
+  bottom: 25%;
   left: 50%;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 1px;
   /* color: #1d3c74; */
-  color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.2);
 
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -100,19 +100,40 @@ body {
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
 }
-.clock .year {
+.clock .date {
     position: absolute;
-    top: calc(25% + 20px);
+    bottom: 25%;
     left: 50%;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
+    font-size: 10px;
+    
+    /* letter-spacing: .5px; */
     color: #1d3c74;
+    font-weight: 300;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
+    
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.clock .date > div {
+  background:rgba(12, 49, 99, .1);
+  padding: 2px 7px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.clock .date .yr,
+.clock .date .d {
+  font-size: 12px;
+  font-weight: 300;
 }
 .clock .line {
   --rotation: 0;

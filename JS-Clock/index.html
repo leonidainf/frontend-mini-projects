@@ -1,24 +1,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LeoCodes | Javascript Clock</title>
 
     <link rel="stylesheet" href="./styles/styles.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="wrapper">
       <div class="project-title">
         <div class="title">Analog Clock</div>
-        <div class="subtitle">HTML <span class="x">x</span> CSS <span class="x">x</span> JS</div>
+        <div class="subtitle">
+          HTML <span class="x">x</span> CSS <span class="x">x</span> JS
+        </div>
       </div>
-  
+
       <div class="clock">
         <div class="clock-face">
           <div class="day"></div>
-          <div class="year">2020</div>
+          <div class="date"></div>
           <!-- analog clock lines -->
           <div class="line hours"></div>
           <div class="line minutes"></div>
@@ -37,22 +42,40 @@
           <div class="hour-line hour-8"><span>8</span></div>
           <div class="hour-line hour-10"><span>10</span></div>
           <div class="hour-line hour-11"><span>11</span></div>
-
         </div>
       </div>
     </div>
 
     <script>
       const weekDays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+      const monthNames = [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC",
+      ];
       const lineSeconds = document.querySelector(".seconds");
       const lineMinutes = document.querySelector(".minutes");
       const lineHours = document.querySelector(".hours");
       const dayText = document.querySelector(".day");
+      const yearText = document.querySelector(".year");
+      const dateText = document.querySelector(".date");
 
       function setClock() {
         const now = new Date();
-        
-        const day = weekDays[now.getDay()];
+
+        const year = now.getFullYear();
+        const month = monthNames[now.getMonth() - 1];
+        // const day = weekDays[now.getDay() - 1];
+        const day = now.getDay();
         const seconds = now.getSeconds() / 60;
         const minutes = (seconds + now.getMinutes()) / 60;
         const hours = (minutes + now.getHours()) / 12;
@@ -60,16 +83,22 @@
         setRotation(lineSeconds, seconds);
         setRotation(lineMinutes, minutes);
         setRotation(lineHours, hours);
-        setDay(day);
+
+        setDate(day, month, year);
+        // setDay(day);
       }
 
       setRotation = (element, rotationRatio) => {
         element.style.setProperty("--rotation", rotationRatio * 360);
-      }
+      };
 
-      setDay = (day) => {
-        dayText.innerHTML = day;
-      }
+      // setDay = (day) => {
+      //   dayText.innerHTML = day;
+      // };
+
+      setDate = (day, month, year) => {
+        dateText.innerHTML = `<div><span class="d">${day}</span> ${month} <span class="yr">${year}</span></div>`;
+      };
 
       setInterval(setClock, 1000);
       setClock();
